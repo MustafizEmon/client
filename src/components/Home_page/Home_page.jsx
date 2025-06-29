@@ -1453,7 +1453,7 @@ const HomePage = () => {
       </footer>
 
       {/* Mobile Bottom Navigation Bar */}
-      <div style={mobileNavBarStyle}>
+      {/* <div style={mobileNavBarStyle}>
         <button 
           style={mobileNavButtonStyle(activeMobileTab === 'home')} 
           onClick={() => handleMobileNavClick('home')}
@@ -1489,7 +1489,7 @@ const HomePage = () => {
           <FiBookOpen style={mobileNavIconStyle(activeMobileTab === 'Blog_page')} />
           Blogs
         </button>        
-      </div>
+      </div> */}
 
 
 

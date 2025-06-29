@@ -685,7 +685,7 @@ const AppointmentBooking = () => {
             </p>
           </div>
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/Home_page')}
             style={{
               backgroundColor: '#3498db',
               color: 'white',

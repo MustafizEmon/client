@@ -226,6 +226,7 @@ export const LandingPage = () => {
         {/* Mobile Menu */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
           <div className="mobile-menu-links">
+            <Link to="/home_page" className="mobile-menu-link" onClick={handleClick}>Home</Link>
             <Link to="#features" className="mobile-menu-link" onClick={toggleMobileMenu}>Features</Link>
             <Link to="#about" className="mobile-menu-link" onClick={toggleMobileMenu}>About</Link>
             <Link to="#blogs" className="mobile-menu-link" onClick={toggleMobileMenu}>Blog</Link>

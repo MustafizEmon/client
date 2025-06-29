@@ -439,7 +439,7 @@ const toggleMobileSidebar = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const messagesEndRef = useRef(null);
 
-  const healthTopics = ["Nearby Medicals", "Find Doctor for Migraine", "Find Doctor for Heart Disease"];
+  const healthTopics = ["Nearby Medicals", "suggest Doctor for Migraine", "suggest Doctor for Heart Disease"];
 
   useEffect(() => {
     setMessages(prev => [
@@ -1563,15 +1563,16 @@ closedLabel: {
                 className="navigate-button" 
                 onClick={() => {
                   if (selectedLocation?.id) {
-                    const url = `/MedicalInformation/${selectedLocation.id}`;
-                    const state = {
-                      facilityData: {
-                        id: selectedLocation.id,
-                        name: selectedLocation.name,
-                        address: selectedLocation.address,
-                      },
-                    };
-                    window.open(url, '_blank');
+navigate(`/MedicalInformation/${selectedLocation.id}`, {
+  state: {
+    facilityData: {
+      id: selectedLocation.id,
+      name: selectedLocation.name,
+      address: selectedLocation.address,
+    },
+  },
+});
+
                   } else {
                     setMessages(prev => [...prev, {
                       id: uuidv4(),
@@ -1588,9 +1589,7 @@ closedLabel: {
               <button 
                 className="navigate-button secondary"
                 onClick={() => {
-                  if (mapCoords) {
-                    window.open(`https://www.google.com/maps?q=${mapCoords.lat},${mapCoords.lng}`);
-                  }
+                   window.location.href = `https://www.google.com/maps?q=${mapCoords.lat},${mapCoords.lng}`;
                 }}
               >
                 Open in Google Maps
@@ -1689,10 +1688,10 @@ closedLabel: {
             {/* Action Buttons */}
             <div style={styles.actionButtons}>
               <button style={styles.primaryButton}
-              onClick={() => window.open(`/AppointmentBooking/${selectedDoctor.id}`, '_blank')}
+              onClick={() => navigate(`/AppointmentBooking/${selectedDoctor.id}`)}
               >Book Appointment</button>
               <button style={styles.secondaryButton}
-              onClick={() => window.open(`/Profile/${selectedDoctor.userId}`, '_blank')}>View Profile</button>
+              onClick={() => navigate(`/Profile/${selectedDoctor.userId}`)}>View Profile</button>
             </div>
           </div>
         </div>

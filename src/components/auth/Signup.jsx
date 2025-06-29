@@ -61,7 +61,7 @@ export default function Signup() {
         })
       });
 
-      window.location.href = role === 'patient' ? '/login' : '/pending-approval';
+      window.location.href = role === 'patient' ? '/login' : '/';
     } catch (error) {
       alert(error.message);
     }
@@ -275,7 +275,8 @@ export default function Signup() {
       backgroundColor: '#f9fafb',
       transition: 'all 0.2s',
       height: '48px',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      color: '#3b82f6',
     },
     passwordToggle: {
       position: 'absolute',

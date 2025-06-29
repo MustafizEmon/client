@@ -230,6 +230,7 @@ const styles = `
     transition: all 0.2s;
     height: 48px;
     text-indent: 25px; /* Moves placeholder text slightly right */
+    color: #3b82f6;
 }
 
   .form-input:focus {

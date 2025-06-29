@@ -808,7 +808,7 @@ const toggleMobileSidebar = () => {
 
     try {
       setIsTyping(true);
-      const response = await fetch(import.meta.env.VITE_API_URL, requestOptions);
+      const response = await fetch(import.meta.env.VITE_API_URL_1, requestOptions);
       const data = await response.json();
       
       if (!response.ok) {

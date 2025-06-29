@@ -122,7 +122,7 @@ const VideoSession = () => {
         timeout: 20000
       };
 
-      socketRef.current = io(import.meta.env.VITE_SOCKET_SERVER_URL || 'http://localhost:3001', socketOptions);
+      socketRef.current = io(import.meta.env.VITE_API_URL || 'https://healthapp-1-q37j.onrender.com', socketOptions);
 
       socketRef.current.on('connect', () => {
         console.log('Socket connected');

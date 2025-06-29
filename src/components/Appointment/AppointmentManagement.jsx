@@ -581,7 +581,7 @@ const AppointmentManagement = () => {
 
       const doctorData = doctorSnap.data();
       const availability = doctorData.availability || {};
-      
+
       // Use the same date format as when the slot was booked
       const appointmentDate = moment(appointment.date).format('YYYY-MM-DD');
       const dateAvailability = availability[appointmentDate] || {};
@@ -859,8 +859,8 @@ const isWithinCallWindow = (appointment) => {
                     <button 
                       onClick={() => navigate(
                         currentUser?.role === 'doctor' 
-                          ? `/patients/${appointment.patientInfo.patientId}` 
-                          : `/doctors/${appointment.doctorId}`
+                          ? `/profile/${appointment.patientInfo.patientId}` 
+                          : `/profile/${appointment.doctorId}`
                       )}
                       className="profile-button"
                     >
@@ -1062,8 +1062,8 @@ const isWithinCallWindow = (appointment) => {
                       <td>
                         <button onClick={() => navigate(
                            currentUser?.role === 'doctor' 
-                           ? `/Profile/${appointment.patientInfo.patientId}` 
-                           : `/Profile/${appointment.doctorId}` )}
+                           ? `/profile/${appointment.patientInfo.patientId}` 
+                           : `/profile/${appointment.doctorId}` )}
                            className="profile-button">View Profile
                         </button>
                       </td>
@@ -1094,7 +1094,8 @@ const isWithinCallWindow = (appointment) => {
                         <span className={`status-badge ${appointment.status}`}>
                           {appointment.status === 'completed' ? 'Completed' : 
                            appointment.status === 'cancelled' ? 'Cancelled' :
-                           appointment.status === 'confirmed' ? 'Missed' : 'Expired'}
+                           appointment.status === 'confirmed' ? 'Completed' : 'Expired'}   
+                           {/* Expired */}
                         </span>
                       </td>
                       <td>

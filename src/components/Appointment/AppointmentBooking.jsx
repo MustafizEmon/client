@@ -443,29 +443,30 @@ const AppointmentBooking = () => {
   }, [id]);
 
   // Generate available dates based on doctor's working days
-  const getAvailableDates = () => {
-    if (!doctor?.availableDays) return [];
+const getAvailableDates = () => {
+  if (!doctor?.workingHours) return [];
+  
+  const dates = [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Normalize time
+  
+  for (let i = 0; i < 14; i++) { // Next 14 days
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
     
-    const dates = [];
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize time
-    
-    for (let i = 0; i < 14; i++) { // Next 14 days
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
-      
-      if (doctor.availableDays.includes(dayName)) {
-        // Check if date is in unavailableDates
-        const dateStr = moment(date).format('YYYY-MM-DD'); // Use moment for consistent formatting
-        if (!doctor.unavailableDates?.includes(dateStr)) {
-          dates.push(date);
-        }
+    // Check if this day has working hours defined
+    if (doctor.workingHours[dayName]) {
+      // Check if date is in unavailableDates
+      const dateStr = moment(date).format('YYYY-MM-DD');
+      if (!doctor.unavailableDates?.includes(dateStr)) {
+        dates.push(date);
       }
     }
-    
-    return dates;
-  };
+  }
+  
+  return dates;
+};
 
   // Generate time slots considering breaks
   const generateTimeSlots = (date) => {
